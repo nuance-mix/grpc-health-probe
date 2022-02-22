@@ -67,6 +67,7 @@ jobs:
 
   push_image:
     runs-on: self-hosted
+    needs: build_image
     steps:
       -
         name: Login to Nuance JFrog Artifactory
