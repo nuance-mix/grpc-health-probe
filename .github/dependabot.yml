@@ -4,19 +4,11 @@
 # https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
 
 version: 2
-registries:
-  jfrog: # Define access for a private registry 
-    type: docker-registry
-    url: https://entrd-jfrog.ent.nuance.com
-    username: ${{secrets.XMIX_PUBLISH_USERNAME}}
-    password: ${{secrets.XMIX_PUBLISH_PASSWORD}}
 updates:
   # Enable version updates for Docker
   - package-ecosystem: "docker"
     # Look for a `Dockerfile` in the `root` directory
     directory: "/"
-    registries:
-      - jfrog
     # Check for updates once a week
     schedule:
       interval: "weekly"
