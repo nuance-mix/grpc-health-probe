@@ -7,7 +7,7 @@ version: 2
 registries:
   jfrog: # Define access for a private registry 
     type: docker-registry
-    url: https://entrd-jfrog.ent.nuance.com/artifactory
+    url: https://entrd-jfrog.ent.nuance.com
     username: ${{secrets.XMIX_PUBLISH_USERNAME}}
     password: ${{secrets.XMIX_PUBLISH_PASSWORD}}
 updates:
