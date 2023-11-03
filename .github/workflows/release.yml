@@ -9,22 +9,26 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@master
+      with:
+        fetch-depth: 0
     - name: Setup Go
       uses: actions/setup-go@v1
       with:
-        go-version: 1.20
+        go-version: '1.21'
     - name: Setup ko
       uses: imjasonh/setup-ko@v0.4
       with:
         version: v0.9.3
     - name: Binary builds with GoReleaser
-      uses: goreleaser/goreleaser-action@v1
+      uses: goreleaser/goreleaser-action@v5
       with:
         version: latest
-        args: release --rm-dist
+        args: release --clean
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Build and push multi-arch container images
+      env:
+        VERSION_TAG: ${GITHUB_REF_NAME#v}
       run: |
         set -euo pipefail
         tag="$(git describe --tag --always --dirty)"
